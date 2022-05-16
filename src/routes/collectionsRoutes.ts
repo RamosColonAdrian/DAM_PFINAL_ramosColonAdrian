@@ -11,7 +11,8 @@ import {
   createPlayer,
   updatePlayer,
   deletePlayer,
-  kda
+  kda,
+  playerByRank
 } from "../helpers/porcessPlayer";
 
 import {
@@ -65,7 +66,7 @@ export const playerRoute = async () => {
         "Crear",
         "Editar",
         "Borrar",
-        "KDA de los juagadores",
+        "Jugadores por rango",
         "Volver",
       ],
     },
@@ -89,6 +90,9 @@ export const playerRoute = async () => {
       break;
     case "KDA de los juagadores":
       kda();
+      break;
+    case "Jugadores por rango":
+      playerByRank();
       break;
     case "Volver":
       main();

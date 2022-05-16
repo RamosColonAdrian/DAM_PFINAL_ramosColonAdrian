@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.kda = exports.deletePlayer = exports.updatePlayer = exports.createPlayer = exports.allPlayers = exports.readPlayer = void 0;
+exports.playerByRank = exports.kda = exports.deletePlayer = exports.updatePlayer = exports.createPlayer = exports.allPlayers = exports.readPlayer = void 0;
 const inquirer_1 = __importDefault(require("inquirer"));
 const __1 = require("..");
 const Champion_1 = require("../classes/Champion");
@@ -321,6 +321,7 @@ async function updatePlayer() {
             type: "checkbox",
             message: "Que campo quieres modificar?",
             choices: ["Rank", "Salario", "Posicion", "Equipo", "NickName"],
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
     ])
         .then(async (answers) => {
@@ -596,3 +597,34 @@ async function kda() {
     });
 }
 exports.kda = kda;
+async function playerByRank() {
+    await database_1.db
+        .conectarBD()
+        .then(async (result) => {
+        await playerSchema_1.Players.aggregate([
+            {
+                $group: {
+                    _id: "$rank",
+                    count: {
+                        $sum: 1
+                    }
+                }
+            },
+            {
+                $project: {
+                    "Rango": "$rank",
+                    "Total": "$count"
+                }
+            },
+        ])
+            .then((result) => {
+            console.log(result);
+            (0, __1.main)();
+        }).catch((err) => {
+            console.log(err.message);
+        });
+    }).catch((err) => {
+        console.log(err.message);
+    });
+}
+exports.playerByRank = playerByRank;

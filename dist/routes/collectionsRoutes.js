@@ -51,7 +51,7 @@ const playerRoute = async () => {
                 "Crear",
                 "Editar",
                 "Borrar",
-                "KDA de los juagadores",
+                "Jugadores por rango",
                 "Volver",
             ],
         },
@@ -74,6 +74,9 @@ const playerRoute = async () => {
             break;
         case "KDA de los juagadores":
             (0, porcessPlayer_1.kda)();
+            break;
+        case "Jugadores por rango":
+            (0, porcessPlayer_1.playerByRank)();
             break;
         case "Volver":
             (0, index_1.main)();

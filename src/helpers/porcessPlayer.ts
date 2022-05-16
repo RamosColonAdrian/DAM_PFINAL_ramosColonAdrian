@@ -389,6 +389,7 @@ export async function updatePlayer() {
         type: "checkbox",
         message: "Que campo quieres modificar?",
         choices: ["Rank", "Salario", "Posicion", "Equipo", "NickName"],
+        validate: (input: any) => validateVoid(input),
       },
     ])
     .then(async (answers) => {
@@ -478,6 +479,7 @@ export async function updatePlayer() {
                 name:"rank",
                 choices:["top", "jungler", "mid", "adc", "support"],
                 message:"> Introduce la nueva posicion del juagdor: "
+                
               }
             ])
             .then(async(result) => {
@@ -704,3 +706,34 @@ export async function kda(){
   });
 }
 
+export async function playerByRank(){
+  await db
+  .conectarBD()
+  .then(async(result) => {
+    await Players.aggregate([
+      {
+        $group:{
+          _id: "$rank",
+          count:{
+            $sum:1
+          }
+        }
+      },
+      {
+        $project:{
+          "Rango": "$rank",
+          "Total":"$count"
+        }
+      },      
+    ])
+    .then((result) => {
+      console.log(result)
+      main();
+    }).catch((err) => {
+      console.log(err.message)
+
+    });
+  }).catch((err) => {
+    console.log(err.message)
+  });
+}

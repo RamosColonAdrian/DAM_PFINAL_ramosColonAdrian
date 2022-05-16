@@ -188,6 +188,7 @@ async function updateTeam() {
             type: "checkbox",
             message: "Que campos quieres modificar?",
             choices: ["Nombre", "Coach", "Region", "Sede", "Activo"],
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
     ])
         .then(async (answers) => {
