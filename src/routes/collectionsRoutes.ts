@@ -11,6 +11,7 @@ import {
   createPlayer,
   updatePlayer,
   deletePlayer,
+  kda
 } from "../helpers/porcessPlayer";
 
 import {
@@ -87,7 +88,7 @@ export const playerRoute = async () => {
       deletePlayer();
       break;
     case "KDA de los juagadores":
-     // kad();
+      kda();
       break;
     case "Volver":
       main();

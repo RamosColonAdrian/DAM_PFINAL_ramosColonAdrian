@@ -61,8 +61,9 @@ export class Player {
     this._assists = assists;
   }
 
-  kda(): number {
-    return (this._kills + this._assists) / this._deaths;
+  public get kda(): number {
+    let kda = (this._kills + this._assists) / this._deaths;
+    return kda
   }
 
   public get name(): string {

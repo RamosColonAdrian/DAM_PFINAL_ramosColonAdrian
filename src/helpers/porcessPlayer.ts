@@ -156,8 +156,9 @@ export async function allPlayers() {
             let str = JSON.stringify(player);
             str = JSON.stringify(player, null, 4);
             console.log(str);
-            main();
+            
           });
+          main();
         })
         .catch((err: any) => {
           console.log("Error: " + err);
@@ -302,7 +303,7 @@ export async function createPlayer() {
             ])
               .then(async (query2) => {
                 if (query2.length == 0) {
-                  throw new Error("El campeon especificado no existe");
+                  throw new Error("El campeon especificado no existe o no se le ha asignado a ningun jugador");
                 } else if (query1.length == 0) {
                   throw new Error(
                     "El Equipo especificado no existe, creelo antes o introduzca uno existente"
@@ -650,6 +651,56 @@ export async function deletePlayer() {
 }
 
 export async function kda(){
+  await db
+  .conectarBD()
+  .then(async () => {
+    await Players.aggregate([
+      {
+        $lookup: {
+          from: "champions",
+          localField: "championPool",
+          foreignField: "idChamp",
+          as: "champions",
+        },
+      },
+    ])
+      .then((query) => {
+        query.forEach((element) => {
+          let player = new Player(
+            element.playerID,
+            element.name,
+            element.nickName,
+            element.rank,
+            element.salary,
+            element.nationality,
+            element.position,
+            element.birthdate,
+            element.region,
+            element.team,
+            element.kills,
+            element.deaths,
+            element.assists
+          );
+          let champion = new Champion(
+            element.champions[0].name,
+            element.champions[0].position,
+            element.champions[0].type
+          );
+          champion.skills = element.champions[0].skills;
+          player.championPool = champion;
+          let p =player.kda.toFixed(2)
+          console.log(player.name," KDA: ",p)
+        });
 
+        main();
+      })
+      .catch((err: any) => {
+        console.log("Error: " + err);
+        main();
+      });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 }
 

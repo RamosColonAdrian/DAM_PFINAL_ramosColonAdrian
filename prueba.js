@@ -351,20 +351,132 @@ db.champions.insertMany([
 
 db.players.insertMany([
   {
-    playerID:04,
-    name: "FRan",
-    nickName: "PEpiasdasto",
+    playerID:09,
+    name: "Juan Ramirez",
+    nickName: "JuanD",
     rank: "challenger",
     salary:45000,
-    nationality: "Sweden",
+    nationality: "France",
     position: "adc",
     birthdate: new Date("1996/09/20"),
     region:"europe",
-    team:"",
+    team:"02",
     kills:111,
     deaths:76,
     assists:432,
-    championPool:"6273753ebfc31cff4a60da1e"
+    championPool:"07"
+  },
+  {
+    playerID:02,
+    name: "Mario Lopez",
+    nickName: "Mariano",
+    rank: "diamond",
+    salary:23700,
+    nationality: "Sweden",
+    position: "mid",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"02",
+    kills:213,
+    deaths:56,
+    assists:432,
+    championPool:"05"
+  },
+  {
+    playerID:03,
+    name: "Antonio Canales",
+    nickName: "Rekles",
+    rank: "master",
+    salary:156000,
+    nationality: "France",
+    position: "adc",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"02",
+    kills:453,
+    deaths:196,
+    assists:765,
+    championPool:"07"
+  },
+  {
+    playerID:04,
+    name: "Luicas-jong",
+    nickName: "xPEKE",
+    rank: "gold",
+    salary:233700,
+    nationality: "Spain",
+    position: "mid",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"01",
+    kills:321,
+    deaths:46,
+    assists:432,
+    championPool:"03"
+  },
+  {
+    playerID:05,
+    name: "Manolo Lama",
+    nickName: "Cianide",
+    rank: "master",
+    salary:47800,
+    nationality: "Sweden",
+    position: "jungler",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"01",
+    kills:433,
+    deaths:123,
+    assists:632,
+    championPool:"07"
+  },
+  {
+    playerID:06,
+    name: "Carlos Latre",
+    nickName: "soaz",
+    rank: "diamond",
+    salary:23210,
+    nationality: "English",
+    position: "support",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"01",
+    kills:313,
+    deaths:34,
+    assists:1233,
+    championPool:"05"
+  },
+  {
+    playerID:07,
+    name: "Juana de Arco",
+    nickName: "Arcos",
+    rank: "challenger",
+    salary:65262,
+    nationality: "Japan",
+    position: "adc",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"02",
+    kills:123,
+    deaths:12,
+    assists:23,
+    championPool:"05"
+  },
+  {
+    playerID:08,
+    name: "Claro",
+    nickName: "Forgiven",
+    rank: "iron",
+    salary:12123,
+    nationality: "Spain",
+    position: "adc",
+    birthdate: new Date("1996/09/20"),
+    region:"europe",
+    team:"02",
+    kills:232,
+    deaths:71,
+    assists:32,
+    championPool:"08"
   }
 ])
 
@@ -378,3 +490,12 @@ db.teams.insertMany([
     headquarters: "London",
   }
 ])	
+
+
+/*{
+  _id: "$rank",
+  count:{
+    $sum:1
+  }
+}
+*/
