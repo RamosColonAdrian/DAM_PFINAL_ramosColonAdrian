@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+import { validateVoid } from './helpers/validatorsHelper';
 import { championRoute, playerRoute, teamRoute  } from "./routes/collectionsRoutes";
 
 
@@ -11,6 +12,7 @@ export const main = async () => {
       type: 'list',
       message: 'Con que colección quieres interactuar',
       choices: ['Champion', 'Player', 'Team', 'Salir'],
+      validate: (input: any) => validateVoid(input),
     },
   ]);
   switch (action) {
@@ -28,14 +30,15 @@ export const main = async () => {
         {
           type: "confirm",
           message:"Seguro que quieres salir?",
-          name :"exit"
+          name :"exit",
+          validate: (input: any) => validateVoid(input),
         }
       ])
       .then(async (input) =>{
         if(!input.exit)
           main();
         else
-          return
+        process.exit(1)
       })
       
   }

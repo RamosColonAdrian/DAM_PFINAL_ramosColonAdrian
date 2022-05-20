@@ -72,10 +72,11 @@ const playerSchema = new mongoose_1.Schema({
         type: String, //fk
     },
 });
-//hacemos una virtual en vez de un metodo propio del jugador para aprovechar el potencial de mongoose
+/*hacemos una virtual en vez de un metodo propio del jugador para aprovechar el potencial de mongoose
 playerSchema
-    .virtual("kdaRatio")
-    .get(function () {
+  .virtual("kdaRatio")
+  .get(function (this: { kills: number; assists: number; deaths: number }) {
     return (this.kills + this.assists) / this.deaths;
-});
+  });
+*/
 exports.Players = (0, mongoose_1.model)("Players", playerSchema);

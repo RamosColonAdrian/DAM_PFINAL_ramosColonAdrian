@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { validateLength } from "../helpers/arrayHelpers"
 import crypto from "crypto"
 
 const playerSchema = new Schema({
@@ -70,11 +69,11 @@ const playerSchema = new Schema({
   },
 });
 
-//hacemos una virtual en vez de un metodo propio del jugador para aprovechar el potencial de mongoose
+/*hacemos una virtual en vez de un metodo propio del jugador para aprovechar el potencial de mongoose
 playerSchema
   .virtual("kdaRatio")
   .get(function (this: { kills: number; assists: number; deaths: number }) {
     return (this.kills + this.assists) / this.deaths;
   });
-
+*/
 export const Players = model("Players", playerSchema);

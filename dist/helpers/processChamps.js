@@ -9,6 +9,7 @@ const __1 = require("..");
 const Champion_1 = require("../classes/Champion");
 const database_1 = require("../database/database");
 const champSchema_1 = require("../schema/champSchema");
+const validatorsHelper_1 = require("./validatorsHelper");
 async function allChamps() {
     await database_1.db
         .conectarBD()
@@ -34,6 +35,7 @@ async function readChampion() {
             type: "list",
             message: "Por que campo desea buscar",
             choices: ["Nombre del campeon", "Posicion", "Tipo"],
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
     ]);
     switch (typeFind) {
@@ -44,6 +46,7 @@ async function readChampion() {
                     type: "input",
                     name: "name",
                     message: "> introduzca el nombre del campeon: ",
+                    validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
                 },
             ])
                 .then(async (answers) => {
@@ -60,7 +63,7 @@ async function readChampion() {
                         let champion = new Champion_1.Champion(queryOne.name, queryOne.position, queryOne.type);
                         champion.skills = queryOne.skills;
                         console.log(champion);
-                        return (0, __1.main)();
+                        (0, __1.main)();
                     }
                 })
                     .catch((err) => console.log("Error: " + err));
@@ -76,6 +79,7 @@ async function readChampion() {
                     type: "input",
                     name: "position",
                     message: "> Introduzca la posicion por la que buscar: ",
+                    validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
                 },
             ])
                 .then(async (answers) => {
@@ -100,6 +104,7 @@ async function readChampion() {
                             });
                             console.log("\n");
                         });
+                        (0, __1.main)();
                     }
                 })
                     .catch((err) => console.log("Error: " + err));
@@ -115,6 +120,7 @@ async function readChampion() {
                     type: "input",
                     name: "type",
                     message: "> Introduzca el tipo por el que desea buscar: ",
+                    validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
                 },
             ])
                 .then(async (answers) => {
@@ -158,18 +164,21 @@ async function updateChampion() {
             type: "input",
             name: "name",
             message: "> Introduzca el nombre del campeon a modificar:",
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
         {
             type: "list",
             name: "position",
             message: "> Introduzca la nueva posicion del campeon: ",
             choices: ["top", "mid", "jungler", "support", "adc"],
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
         {
             type: "list",
             name: "type",
             message: "> Introduzca el nuevo tipo de campeon: ",
             choices: ["assassin", "fighter", "mage", "marksman", "tank", "healer"],
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
     ])
         .then(async (answers) => {

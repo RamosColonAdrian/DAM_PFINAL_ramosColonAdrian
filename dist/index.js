@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = void 0;
 const inquirer_1 = __importDefault(require("inquirer"));
+const validatorsHelper_1 = require("./helpers/validatorsHelper");
 const collectionsRoutes_1 = require("./routes/collectionsRoutes");
 //index
 const main = async () => {
@@ -14,6 +15,7 @@ const main = async () => {
             type: 'list',
             message: 'Con que colección quieres interactuar',
             choices: ['Champion', 'Player', 'Team', 'Salir'],
+            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
         },
     ]);
     switch (action) {
@@ -31,14 +33,15 @@ const main = async () => {
                 {
                     type: "confirm",
                     message: "Seguro que quieres salir?",
-                    name: "exit"
+                    name: "exit",
+                    validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
                 }
             ])
                 .then(async (input) => {
                 if (!input.exit)
                     (0, exports.main)();
                 else
-                    return;
+                    process.exit(1);
             });
     }
 };

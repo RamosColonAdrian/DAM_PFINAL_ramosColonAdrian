@@ -3,6 +3,7 @@ import { main } from "..";
 import { Champion } from "../classes/Champion";
 import { db } from "../database/database";
 import { Champions } from "../schema/champSchema";
+import { validateVoid } from "./validatorsHelper";
 
 export async function allChamps() {
     await db
@@ -29,6 +30,7 @@ const { typeFind } = await inquirer.prompt([
     type: "list",
     message: "Por que campo desea buscar",
     choices: ["Nombre del campeon", "Posicion", "Tipo"],
+    validate: (input: any) => validateVoid(input),
     },
 ]);
 switch (typeFind) {
@@ -39,6 +41,7 @@ switch (typeFind) {
             type: "input",
             name: "name",
             message: "> introduzca el nombre del campeon: ",
+            validate: (input: any) => validateVoid(input),
         },
         ])
         .then(async (answers) => {
@@ -58,7 +61,7 @@ switch (typeFind) {
                 );
                 champion.skills = queryOne.skills;
                 console.log(champion);
-                return main();
+                main();
             }
             })
             .catch((err: any) => console.log("Error: " + err));
@@ -74,6 +77,7 @@ switch (typeFind) {
             type: "input",
             name: "position",
             message: "> Introduzca la posicion por la que buscar: ",
+            validate: (input: any) => validateVoid(input),
         },
         ])
         .then(async (answers) => {
@@ -97,6 +101,7 @@ switch (typeFind) {
                 });
                 console.log("\n");
                 });
+                main();
             }
             })
             .catch((err: any) => console.log("Error: " + err));
@@ -113,6 +118,7 @@ switch (typeFind) {
             type: "input",
             name: "type",
             message: "> Introduzca el tipo por el que desea buscar: ",
+            validate: (input: any) => validateVoid(input),
         },
         ])
         .then(async (answers) => {
@@ -155,18 +161,21 @@ await inquirer
         type: "input",
         name: "name",
         message: "> Introduzca el nombre del campeon a modificar:",
+        validate: (input: any) => validateVoid(input),
     },
     {
         type: "list",
         name: "position",
         message: "> Introduzca la nueva posicion del campeon: ",
         choices: ["top", "mid", "jungler", "support", "adc"],
+        validate: (input: any) => validateVoid(input),
     },
     {
         type: "list",
         name: "type",
         message: "> Introduzca el nuevo tipo de campeon: ",
         choices: ["assassin", "fighter", "mage", "marksman", "tank", "healer"],
+        validate: (input: any) => validateVoid(input),
     },
     ])
     .then(async (answers) => {

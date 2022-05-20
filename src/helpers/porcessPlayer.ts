@@ -427,7 +427,8 @@ export async function updatePlayer() {
                 )
                 .then(async (result) => {
                   console.log("Jugador modificado con exito")
-                  db.desconectarBD()
+                  db.desconectarBD(),
+                  main();
                 }).catch((err) => {
                   console.log(err.message)
                 });
@@ -462,6 +463,7 @@ export async function updatePlayer() {
                 .then(async (result) => {
                   console.log("Jugador modificado con exito")
                   db.desconectarBD()
+                  main();
                 }).catch((err) => {
                   console.log(err.message)
                 });
@@ -478,8 +480,8 @@ export async function updatePlayer() {
                 type:"list",
                 name:"rank",
                 choices:["top", "jungler", "mid", "adc", "support"],
-                message:"> Introduce la nueva posicion del juagdor: "
-                
+                message:"> Introduce la nueva posicion del juagdor: ",
+                validate: (input: any) => validateVoid(input),
               }
             ])
             .then(async(result) => {
@@ -496,7 +498,8 @@ export async function updatePlayer() {
                 )
                 .then(async (result) => {
                   console.log("Jugador modificado con exito")
-                  db.desconectarBD()
+                  db.desconectarBD(),
+                  main();
                 }).catch((err) => {
                   console.log(err.message)
                 });
@@ -530,7 +533,8 @@ export async function updatePlayer() {
                 )
                 .then(async (result) => {
                   console.log("Jugador modificado con exito")
-                  db.desconectarBD()
+                  db.desconectarBD(),
+                  main();
                 }).catch((err) => {
                   console.log(err.message)
                 });
@@ -564,7 +568,8 @@ export async function updatePlayer() {
                 )
                 .then(async (result) => {
                   console.log("Jugador modificado con exito")
-                  db.desconectarBD()
+                  db.desconectarBD(),
+                  main();
                 }).catch((err) => {
                   console.log(err.message)
                 });
@@ -581,7 +586,6 @@ export async function updatePlayer() {
     .catch((err) => {
       console.log(err.message)
     });
-
 }
 
 export async function deletePlayer() {
@@ -595,7 +599,6 @@ export async function deletePlayer() {
             type: "input",
             message: "Introduce el ID del Jugador a eliminar",
             validate: (input: any) => validateVoid(input),
-
           },
         ])
         .then((result1) => {
@@ -615,7 +618,6 @@ export async function deletePlayer() {
                       name: "confirm",
                       message: "Seguro que quieres eliminar este jugador?",
                       validate: (input: any) => validateVoid(input),
-
                     },
                   ])
                   .then((result2) => {

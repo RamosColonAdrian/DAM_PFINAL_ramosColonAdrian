@@ -356,7 +356,8 @@ async function updatePlayer() {
                             })
                                 .then(async (result) => {
                                 console.log("Jugador modificado con exito");
-                                database_1.db.desconectarBD();
+                                database_1.db.desconectarBD(),
+                                    (0, __1.main)();
                             }).catch((err) => {
                                 console.log(err.message);
                             });
@@ -387,6 +388,7 @@ async function updatePlayer() {
                                 .then(async (result) => {
                                 console.log("Jugador modificado con exito");
                                 database_1.db.desconectarBD();
+                                (0, __1.main)();
                             }).catch((err) => {
                                 console.log(err.message);
                             });
@@ -402,7 +404,8 @@ async function updatePlayer() {
                             type: "list",
                             name: "rank",
                             choices: ["top", "jungler", "mid", "adc", "support"],
-                            message: "> Introduce la nueva posicion del juagdor: "
+                            message: "> Introduce la nueva posicion del juagdor: ",
+                            validate: (input) => (0, validatorsHelper_1.validateVoid)(input),
                         }
                     ])
                         .then(async (result) => {
@@ -416,7 +419,8 @@ async function updatePlayer() {
                             })
                                 .then(async (result) => {
                                 console.log("Jugador modificado con exito");
-                                database_1.db.desconectarBD();
+                                database_1.db.desconectarBD(),
+                                    (0, __1.main)();
                             }).catch((err) => {
                                 console.log(err.message);
                             });
@@ -446,7 +450,8 @@ async function updatePlayer() {
                             })
                                 .then(async (result) => {
                                 console.log("Jugador modificado con exito");
-                                database_1.db.desconectarBD();
+                                database_1.db.desconectarBD(),
+                                    (0, __1.main)();
                             }).catch((err) => {
                                 console.log(err.message);
                             });
@@ -476,7 +481,8 @@ async function updatePlayer() {
                             })
                                 .then(async (result) => {
                                 console.log("Jugador modificado con exito");
-                                database_1.db.desconectarBD();
+                                database_1.db.desconectarBD(),
+                                    (0, __1.main)();
                             }).catch((err) => {
                                 console.log(err.message);
                             });
